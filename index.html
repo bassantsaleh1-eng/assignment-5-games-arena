@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameArena - The Ultimate Gaming Experience</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    
+    <style>
+        :root {
+            --bg-color: #0b0c10;
+            --accent-yellow: #ccff00;
+            --border-glow: #00e5ff;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Navbar Customization */
+        .navbar {
+            background-color: rgba(11, 12, 16, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 0;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: #ffffff !important;
+        }
+
+        .navbar-brand span {
+            color: var(--accent-yellow);
+        }
+
+        .nav-link {
+            color: #a0a0a0 !important;
+            font-weight: 500;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: #ffffff !important;
+        }
+
+        .btn-signin {
+            background-color: var(--accent-yellow);
+            color: #000000;
+            font-weight: 600;
+            border-radius: 8px;
+            padding: 8px 24px;
+            border: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-signin:hover {
+            background-color: #b3e600;
+            color: #000000;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            padding: 80px 0 100px 0;
+            position: relative;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .hero-title .highlight {
+            color: var(--accent-yellow);
+            display: block;
+        }
+
+        .hero-description {
+            color: #a0a0a0;
+            font-size: 1rem;
+            max-width: 480px;
+            margin-top: 25px;
+            margin-bottom: 35px;
+            line-height: 1.6;
+        }
+
+        /* Buttons */
+        .btn-primary-yellow {
+            background-color: var(--accent-yellow);
+            color: #000000;
+            font-weight: 700;
+            padding: 14px 32px;
+            border-radius: 10px;
+            border: none;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .btn-primary-yellow:hover {
+            background-color: #b3e600;
+            color: #000;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline-yellow {
+            background-color: transparent;
+            color: var(--accent-yellow);
+            font-weight: 700;
+            padding: 14px 32px;
+            border-radius: 10px;
+            border: 2px solid var(--accent-yellow);
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.2s;
+        }
+
+        .btn-outline-yellow:hover {
+            background-color: rgba(204, 255, 0, 0.1);
+            color: var(--accent-yellow);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Image & Badge Container */
+        .hero-image-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .main-hero-img {
+            width: 100%;
+            border-radius: 20px;
+            border: 2px solid var(--border-glow);
+            box-shadow: 0 0 25px rgba(0, 229, 255, 0.3);
+            object-fit: cover;
+        }
+
+        /* Floating Badge */
+        .floating-badge {
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            background-color: #121318;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 14px;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            z-index: 10;
+        }
+
+        .badge-icon {
+            color: var(--accent-yellow);
+            font-size: 1.8rem;
+        }
+
+        .badge-text {
+            font-size: 0.8rem;
+            color: #8a8a8a;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        .badge-number {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin: 0;
+        }
+
+        /* Games Section Styling */
+        .games-section {
+            padding: 60px 0 100px 0;
+        }
+
+        .section-subtitle {
+            color: var(--accent-yellow);
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-subtitle::before,
+        .section-subtitle::after {
+            content: "";
+            height: 1px;
+            width: 30px;
+            background-color: var(--accent-yellow);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 40px;
+        }
+
+        .btn-nav-circle {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: #16181e;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-nav-circle:hover {
+            border-color: var(--accent-yellow);
+            color: var(--accent-yellow);
+            background-color: rgba(204, 255, 0, 0.1);
+            box-shadow: 0 0 15px rgba(204, 255, 0, 0.3);
+        }
+
+        .btn-view-all {
+            background-color: transparent;
+            border: 2px solid var(--accent-yellow);
+            color: var(--accent-yellow);
+            font-weight: 700;
+            font-size: 0.85rem;
+            padding: 12px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+
+        .btn-view-all:hover {
+            background-color: var(--accent-yellow);
+            color: #000;
+            box-shadow: 0 0 15px rgba(204, 255, 0, 0.4);
+        }
+
+        /* Card Hover Effect */
+        .game-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 2px solid transparent;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .game-card img {
+            width: 100%;
+            height: 380px;
+            object-fit: cover;
+            display: block;
+            border-radius: 18px;
+            transition: transform 0.4s ease;
+        }
+
+        .game-card-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(204, 255, 0, 0.88) 0%, rgba(160, 230, 0, 0.78) 100%);
+            color: #000;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+            border-radius: 18px;
+        }
+
+        .game-card:hover {
+            border-color: var(--accent-yellow);
+            box-shadow: 0 0 25px rgba(204, 255, 0, 0.3);
+        }
+
+        .game-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .game-card:hover .game-card-overlay {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .game-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: #000000;
+            margin-bottom: 5px;
+            line-height: 1.2;
+        }
+
+        .badge-tag {
+            background-color: rgba(0, 0, 0, 0.85);
+            color: #ffffff;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 6px 14px;
+            border-radius: 20px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* What We Do Section Styling */
+        .what-we-do-section {
+            padding: 80px 0;
+        }
+
+        .service-box {
+            background-color: #121318;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 35px 25px;
+            text-align: center;
+            height: 100%;
+            transition: all 0.3s ease;
+        }
+
+        .service-box:hover {
+            border-color: var(--accent-yellow);
+            box-shadow: 0 0 20px rgba(204, 255, 0, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .service-icon-wrapper {
+            width: 60px;
+            height: 60px;
+            background-color: var(--accent-yellow);
+            color: #000;
+            font-size: 1.5rem;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px auto;
+            font-weight: bold;
+        }
+
+        .service-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin: 0;
+        }
+
+        .service-highlight-box {
+            background-color: var(--accent-yellow);
+            color: #000;
+            border-radius: 20px;
+            padding: 35px 25px;
+            text-align: center;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 0 30px rgba(204, 255, 0, 0.3);
+        }
+
+        .service-highlight-box .service-icon-wrapper {
+            background-color: #000;
+            color: var(--accent-yellow);
+        }
+
+        .service-highlight-box .service-title {
+            color: #000;
+        }
+
+        /* Team Section Styling */
+        .team-section {
+            padding: 80px 0;
+        }
+
+        .team-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            background-color: #121318;
+            border: 2px solid transparent;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            height: 350px;
+        }
+
+        .team-card-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            filter: grayscale(100%);
+            transition: all 0.4s ease;
+        }
+
+        .team-card-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 25px 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.95) 70%, rgba(0,0,0,0) 100%);
+            transition: all 0.4s ease;
+        }
+
+        .team-name {
+            font-size: 1.15rem;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 4px;
+            transition: color 0.3s ease;
+        }
+
+        .team-role {
+            font-size: 0.85rem;
+            color: #a0a0a0;
+            margin-bottom: 2px;
+            transition: color 0.3s ease;
+        }
+
+        .team-achievement {
+            font-size: 0.75rem;
+            color: #707070;
+            margin: 0;
+            transition: color 0.3s ease;
+        }
+
+        .team-tag-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            color: #8a8a8a;
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 6px;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            z-index: 5;
+        }
+
+        .team-card:hover {
+            border-color: var(--accent-yellow);
+            box-shadow: 0 0 25px rgba(204, 255, 0, 0.25);
+            transform: translateY(-5px);
+        }
+
+        .team-card:hover .team-card-img {
+            filter: grayscale(0%);
+            transform: scale(1.04);
+        }
+
+        .team-card:hover .team-name {
+            color: var(--accent-yellow);
+        }
+
+        .team-card:hover .team-role {
+            color: #ffffff;
+        }
+
+        .team-card:hover .team-achievement {
+            color: var(--accent-yellow);
+        }
+
+        .team-card:hover .team-tag-badge {
+            background-color: var(--accent-yellow);
+            color: #000000;
+        }
+
+        /* Contact Us Section Styling (Matching latest images) */
+        .contact-section {
+            padding: 80px 0 120px 0;
+        }
+
+        .contact-info-card {
+            background-color: #121318;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .contact-info-card:hover {
+            border-color: var(--accent-yellow);
+            box-shadow: 0 0 20px rgba(204, 255, 0, 0.15);
+        }
+
+        .contact-icon-box {
+            width: 55px;
+            height: 55px;
+            background-color: var(--accent-yellow);
+            color: #000;
+            font-size: 1.4rem;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            font-weight: bold;
+        }
+
+        .contact-details h5 {
+            font-size: 1rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 4px;
+        }
+
+        .contact-details p {
+            color: #a0a0a0;
+            font-size: 0.85rem;
+            margin: 0;
+            word-break: break-all;
+        }
+
+        /* Yellow Community Card */
+        .community-card {
+            background-color: var(--accent-yellow);
+            color: #000;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 0 30px rgba(204, 255, 0, 0.25);
+        }
+
+        .community-card h3 {
+            font-size: 1.4rem;
+            font-weight: 900;
+            margin-bottom: 12px;
+        }
+
+        .community-card p {
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+            color: #222;
+        }
+
+        .social-icons-grid {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .social-icon-btn {
+            width: 45px;
+            height: 45px;
+            background-color: #000;
+            color: var(--accent-yellow);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+
+        .social-icon-btn:hover {
+            transform: scale(1.1);
+            background-color: #1a1a1a;
+            color: #fff;
+        }
+
+        /* Support & Response Badge Box */
+        .support-badge-box {
+            background-color: #121318;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .support-info h6 {
+            color: #fff;
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .support-info p {
+            color: #8a8a8a;
+            font-size: 0.75rem;
+            margin: 0;
+        }
+
+        .response-time-box {
+            text-align: right;
+        }
+
+        .response-time-box h4 {
+            color: var(--accent-yellow);
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin: 0;
+        }
+
+        .response-time-box p {
+            color: #8a8a8a;
+            font-size: 0.7rem;
+            margin: 0;
+        }
+
+        .contact-form-card {
+            background-color: #121318;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 40px;
+            height: 100%;
+        }
+
+        .contact-form-card h3 {
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 25px;
+            color: #fff;
+        }
+
+        .form-control, .form-select {
+            background-color: #1b1c24;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #fff;
+            border-radius: 12px;
+            padding: 14px 20px;
+        }
+
+        .form-control:focus, .form-select:focus {
+            background-color: #1b1c24;
+            border-color: var(--accent-yellow);
+            color: #fff;
+            box-shadow: 0 0 10px rgba(204, 255, 0, 0.2);
+        }
+
+        .form-label {
+            color: #a0a0a0;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        /* Footer Styling */
+        .site-footer {
+            background-color: #07080a;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 60px 0 30px 0;
+            color: #8a8a8a;
+            font-size: 0.9rem;
+        }
+
+        .footer-brand {
+            color: #fff;
+            font-weight: 800;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .footer-brand span {
+            color: var(--accent-yellow);
+        }
+
+        .footer-links-title {
+            color: #fff;
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #8a8a8a;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-yellow);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 40px;
+            padding-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar Section -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="bi bi-controller me-2"></i>Game<span>Arena</span></a>
+            
+            <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link active" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">OUR GAMES</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">What We Do</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Our Team</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Contact Us</a></li>
+                </ul>
+                <div class="d-flex align-items-center gap-3">
+                    <a href="#" class="text-white me-2"><i class="bi bi-bell fs-5"></i></a>
+                    <a href="#" class="btn btn-signin">Sign In</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="container">
+            <div class="row align-items-center gy-5">
+                <div class="col-lg-6">
+                    <h1 class="hero-title">
+                        THE ULTIMATE <br>
+                        <span class="highlight">GAMING</span> <br>
+                        EXPERIENCE
+                    </h1>
+                    <p class="hero-description">
+                        Join millions of gamers worldwide in the most competitive eSports tournaments. Experience next-level gaming with cutting-edge technology and endless possibilities.
+                    </p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#" class="btn-primary-yellow">Start Gaming Now</a>
+                        <a href="#" class="btn-outline-yellow">Watch Tournaments</a>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="hero-image-wrapper ms-lg-4">
+                        <div class="floating-badge">
+                            <div class="badge-icon">
+                                <i class="bi bi-trophy-fill"></i>
+                            </div>
+                            <div>
+                                <p class="badge-text">Active Players</p>
+                                <h4 class="badge-number">2.5M+</h4>
+                            </div>
+                        </div>
+                        <img src="https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=800&q=80" alt="Gaming Setup" class="main-hero-img">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Latest Games Section -->
+    <section class="games-section">
+        <div class="container">
+            <div class="row align-items-center mb-4">
+                <div class="col-md-8">
+                    <div class="section-subtitle">OUR GAMES</div>
+                    <h2 class="section-title">Our Latest Games</h2>
+                </div>
+            </div>
+
+            <div class="row g-4 align-items-center">
+                <div class="col-lg-2 d-flex flex-column gap-3 align-items-start">
+                    <div class="d-flex gap-2">
+                        <button class="btn-nav-circle"><i class="bi bi-arrow-up"></i></button>
+                        <button class="btn-nav-circle"><i class="bi bi-arrow-down"></i></button>
+                    </div>
+                    <a href="#" class="btn-view-all text-uppercase">View All Games</a>
+                </div>
+
+                <div class="col-lg-10">
+                    <div class="row g-4">
+                        <!-- Card 1 -->
+                        <div class="col-md-4">
+                            <div class="game-card">
+                                <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=600&q=80" alt="Alien Game">
+                                <div class="game-card-overlay">
+                                    <div>
+                                        <h3 class="game-title">Alien Companions</h3>
+                                    </div>
+                                    <div class="d-flex flex-column align-items-start gap-2">
+                                        <span class="badge-tag"><i class="bi bi-controller"></i> ADVENTURE</span>
+                                        <span class="badge-tag"><i class="bi bi-display"></i> MULTIPLAYER</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="col-md-4">
+                            <div class="game-card">
+                                <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=600&q=80" alt="Racing Game">
+                                <div class="game-card-overlay">
+                                    <div>
+                                        <h3 class="game-title">Cyber Run 2099</h3>
+                                    </div>
+                                    <div class="d-flex flex-column align-items-start gap-2">
+                                        <span class="badge-tag"><i class="bi bi-controller"></i> RACING</span>
+                                        <span class="badge-tag"><i class="bi bi-display"></i> SCI-FI</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="col-md-4">
+                            <div class="game-card">
+                                <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80" alt="Zelda Game">
+                                <div class="game-card-overlay">
+                                    <div>
+                                        <h3 class="game-title">The Legend of Zelda: Tears of the Kingdom</h3>
+                                    </div>
+                                    <div class="d-flex flex-column align-items-start gap-2">
+                                        <span class="badge-tag"><i class="bi bi-controller"></i> ACTION</span>
+                                        <span class="badge-tag"><i class="bi bi-display"></i> GEFORCE</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What We Do Section -->
+    <section class="what-we-do-section">
+        <div class="container">
+            <div class="row align-items-center mb-5">
+                <div class="col-lg-6">
+                    <div class="section-subtitle">WHAT WE DO</div>
+                    <h2 class="section-title mt-2">More Than Just Games<br>We Build Interactive Journeys</h2>
+                </div>
+            </div>
+
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="service-box">
+                        <div class="service-icon-wrapper"><i class="bi bi-display"></i></div>
+                        <h4 class="service-title">PC Game Development</h4>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-box">
+                        <div class="service-icon-wrapper"><i class="bi bi-phone"></i></div>
+                        <h4 class="service-title">Mobile Game Development</h4>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-box">
+                        <div class="service-icon-wrapper"><i class="bi bi-badge-vr"></i></div>
+                        <h4 class="service-title">AR/VR Solutions</h4>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="service-box">
+                        <div class="service-icon-wrapper"><i class="bi bi-badge-vr"></i></div>
+                        <h4 class="service-title">AR/VR Design</h4>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-highlight-box">
+                        <div class="service-icon-wrapper"><i class="bi bi-controller"></i></div>
+                        <h4 class="service-title">PS4 Game Development</h4>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-box">
+                        <div class="service-icon-wrapper"><i class="bi bi-box"></i></div>
+                        <h4 class="service-title">3D Modellings</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Members Section (8 Members) -->
+    <section class="team-section">
+        <div class="container">
+            <div class="text-center mb-5">
+                <div class="section-subtitle justify-content-center">OUR TEAM</div>
+                <h2 class="section-title mt-2">Our Best Team Members</h2>
+                <p class="text-secondary">Meet the professional gamers and experts behind our success</p>
+            </div>
+
+            <div class="row g-4">
+                <!-- Member 1 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="team-card">
+                        <span class="team-tag-badge">STORM</span>
+                        <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=500&q=80" alt="Jake Storm" class="team-card-img">
+                        <div class="team-card-info">
+                            <h4 class="team-name">Jake "Storm" Wilson</h4>
+                            <p class="team-role">Pro Player - Apex Legends</p>
+                            <p class="team-achievement">Rising Star 2023</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Member 2 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="team-card">
+                        <span class="team-tag-badge">TITAN</span>
+                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=500&q=80" alt="David Park" class="team-card-img">
+                        <div class="team-card-info">
+                            <h4 class="team-name">David "Titan" Park</h4>
+                            <p class="team-role">Team Captain - Dota 2</p>
+                            <p class="team-achievement">The International Winner</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Member 3 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="team-card">
+                        <span class="team-tag-badge">PHOENIX</span>
+                        <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&w=500&q=80" alt="Khaled" class="team-card-img">
+                        <div class="team-card-info">
+                            <h4 class="team-name">Khaled "Phoenix" Ali</h4>
+                            <p class="team-role">Content Creator</p>
+                            <p class="team-achievement">2M+ Followers</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Member 4 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="team-card">
+                        <span class="team-tag-badge">GHOST</span>
+                        <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?auto=format&fit=crop&w=500&q=80" alt="Ryan Miller" class="team-card-img">
+                        <div class="team-card-info">
+                            <h4 class="team-name">Ryan "Ghost" Miller</h4>
+                            <p class="team-role">Team Manager</p>
+                            <p class="team-achievement">Operations Lead</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Member 5 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="team-card">
+                        <span class="team-tag-badge">PHANTOM</span>
+                        <img src="https://images.unsplash.com/photo-1566492031773-4f4e44671857?auto=format&fit=crop&w=500&q=80" alt="Alex Chen" class="team-card-img">
+                        <div class="team-card-info">
+                            <h4 class="team-name">Alex "Phantom" Chen</h4>
+                            <p class="team-role">Pro Player - VALORANT</p>
+                            <p class="team-achievement">World Champion 2023</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Member 6 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="team-card">
+                        <span class="team-tag-badge">NOVA</span>
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=500&q=80" alt="Ali Ahmed" class="team-card-img">
+                        <div class="team-card-info">
+                            <h4 class="team-name">Ali "Nova" Ahmed</h4>
+                            <p class="team-role">Pro Player - League of Legends</p>
+                            <p class="team-achievement">MVP 2023 Season</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Member 7 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="team-card">
+                        <span class="team-tag-badge">VIPER</span>
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=500&q=80" alt="Marcus Rodriguez" class="team-card-img">
+                        <div class="team-card-info">
+                            <h4 class="team-name">Marcus "Viper" Rodriguez</h4>
+                            <p class="team-role">Head Coach - CS:GO</p>
+                            <p class="team-achievement">5x Major Winner</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Member 8 -->
+                <div class="col-lg-3 col-md-6">
+                    <div class="team-card">
+                        <span class="team-tag-badge">SAGA</span>
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=500&q=80" alt="Seif Usama" class="team-card-img">
+                        <div class="team-card-info">
+                            <h4 class="team-name">Seif "Saga" Usama</h4>
+                            <p class="team-role">Strategic Analyst</p>
+                            <p class="team-achievement">Data Science Expert</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Us Section (Fully matching final images) -->
+    <section class="contact-section">
+        <div class="container">
+            <div class="mb-5">
+                <div class="section-subtitle">CONTACT US</div>
+                <h2 class="section-title mt-2">Get In Touch</h2>
+                <p class="text-secondary">Have questions or need support? We're here to help!</p>
+            </div>
+
+            <div class="row g-4 align-items-stretch">
+                <!-- Left Column: Info Cards, Community Card, and Support Badge -->
+                <div class="col-lg-4 d-flex flex-column gap-4">
+                    <!-- Phone Number Card -->
+                    <div class="contact-info-card">
+                        <div class="contact-icon-box">
+                            <i class="bi bi-telephone-fill"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h5>Phone Number</h5>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+
+                    <!-- Email Address Card -->
+                    <div class="contact-info-card">
+                        <div class="contact-icon-box">
+                            <i class="bi bi-envelope-fill"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h5>Email Address</h5>
+                            <p>contact@gamearena.com</p>
+                        </div>
+                    </div>
+
+                    <!-- Join Our Community Yellow Card -->
+                    <div class="community-card">
+                        <h3>Join Our Community</h3>
+                        <p>Connect with us on social media for the latest updates</p>
+                        <div class="social-icons-grid">
+                            <a href="#" class="social-icon-btn"><i class="bi bi-discord"></i></a>
+                            <a href="#" class="social-icon-btn"><i class="bi bi-twitter-x"></i></a>
+                            <a href="#" class="social-icon-btn"><i class="bi bi-instagram"></i></a>
+                            <a href="#" class="social-icon-btn"><i class="bi bi-youtube"></i></a>
+                        </div>
+                    </div>
+
+                    <!-- 24/7 Support Badge Box -->
+                    <div class="support-badge-box">
+                        <div class="support-info">
+                            <h6>24/7</h6>
+                            <p>Support Available</p>
+                        </div>
+                        <div class="response-time-box">
+                            <h4>&lt; 1hr</h4>
+                            <p>Average Response</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Send us a Message Form -->
+                <div class="col-lg-8">
+                    <div class="contact-form-card">
+                        <h3>Send us a Message</h3>
+                        <form>
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label class="form-label">First Name</label>
+                                    <input type="text" class="form-control" placeholder="Your first name">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" placeholder="Your last name">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Email Address</label>
+                                    <input type="email" class="form-control" placeholder="youremail@example.com">
+                                </div>
+                                <div class="col-md-6">
+                                    <label class="form-label">Subject</label>
+                                    <select class="form-select">
+                                        <option selected>General Inquiry</option>
+                                        <option value="support">Technical Support</option>
+                                        <option value="tournaments">Tournaments</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label">Message</label>
+                                    <textarea class="form-control" rows="4" placeholder="Tell us how we can help you..."></textarea>
+                                </div>
+                                <div class="col-12 d-flex align-items-center justify-content-between mt-4">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="newsletterCheck">
+                                        <label class="form-check-label text-secondary fs-6" for="newsletterCheck">
+                                            Subscribe to our newsletter for gaming updates
+                                        </label>
+                                    </div>
+                                    <button type="submit" class="btn-primary-yellow px-4 py-3">Send Message <i class="bi bi-send ms-2"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="row g-4 justify-content-between">
+                <div class="col-lg-4">
+                    <a href="#" class="footer-brand"><i class="bi bi-controller me-2"></i>Game<span>Arena</span></a>
+                    <p class="text-secondary mt-2">The ultimate destination for competitive gaming, esports tournaments, and gaming community.</p>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="footer-links-title">Games</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">VALORANT</a></li>
+                        <li><a href="#">League of Legends</a></li>
+                        <li><a href="#">CS:GO</a></li>
+                        <li><a href="#">Dota 2</a></li>
+                        <li><a href="#">Apex Legends</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="footer-links-title">Tournaments</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Upcoming Events</a></li>
+                        <li><a href="#">Live Matches</a></li>
+                        <li><a href="#">Results</a></li>
+                        <li><a href="#">Rankings</a></li>
+                        <li><a href="#">Schedule</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-2 col-md-4">
+                    <h5 class="footer-links-title">Support</h5>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Bug Reports</a></li>
+                        <li><a href="#">Feature Requests</a></li>
+                        <li><a href="#">Community Guidelines</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p class="mb-0">&copy; 2025 GameArena. All rights reserved.</p>
+                <div class="d-flex gap-4">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                    <a href="#">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
